@@ -46,7 +46,7 @@ const ResumeBuilder = () => {
 
   return (
     <div>
-      <h1 className=''>Resume Builder</h1>
+      <h1>Resume Builder</h1>
       <ul>
         {sections.map((section, index) => (
           <li key={section.id} draggable onDragStart={(e) => handleDragStart(e, section.id)} onDragOver={handleDragOver} onDrop={(e) => handleDrop(e, index)}>
