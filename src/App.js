@@ -6,6 +6,9 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
 import './tailwind.css';
 import { borderRadius, color, fontSize } from '@mui/system';
+import Switch from "react-switch";
+import { UilTimes } from '@iconscout/react-unicons';
+import { UilCheck } from '@iconscout/react-unicons';
 
 const ResumeBuilder = () => {
   const [sections, setSections] = useState([
@@ -125,7 +128,7 @@ const ResumeBuilder = () => {
 
     </div>
           {editingIndex === index ? (
-            <div>
+            <div className=''>
               <input type="text" value={editedName} onChange={handleNameChange} />
               <button onClick={() => handleNameSave(index)} style={{ border: 'none', background: 'none' }}>
                 <FontAwesomeIcon icon={faPencilAlt} />
@@ -140,11 +143,12 @@ const ResumeBuilder = () => {
             </div>
           )}
           
-          <div
-            className={`toggle-switch ${section.enabled ? 'violet' : 'grey'}`}
-            onClick={() => handleToggleSection(index)}
-          >
-            <div className="slider"></div>
+          <div className="toggle-switch">
+            <Switch 
+            offColor='#E6E6E6' onColor='#D0BCFF' 
+            offHandleColor='#8B8B8B' onHandleColor='#381E72' 
+            uncheckedIcon={false} checkedIcon={false} 
+            uncheckedHandleIcon={<UilTimes className="cross" />} checkedHandleIcon={<UilCheck className="check"/>} checked={section.enabled} onChange={() => handleToggleSection(index)} />
           </div>
         </div>
       ))}
