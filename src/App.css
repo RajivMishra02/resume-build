@@ -1,12 +1,13 @@
 .toggle-switch {
     position: relative;
-    display: inline-block;
+
     width: 10px;
     height: 24px;
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
   }
+
   .violet {
     background-color: violet;
   }
@@ -17,16 +18,21 @@
 
   .tog{
     display: flex;
-    margin-left: 868px;
+    margin-left: 945px;
   }
 
   .main{
+    position: relative;
     display: flex;
     flex-direction: column;
-    margin-left: 268px;
+    margin-left: 200px;
     justify-items: center;
+    
   }
 
+  .j{
+    height: 10px;
+  }
   .save{
     margin-bottom: 120px;
     margin-left: 325px ;
@@ -53,7 +59,6 @@
     flex: none;
     order: 0;
     flex-grow: 0;
-    
   }
   
   .slider {
@@ -75,7 +80,6 @@
     background: none;
     cursor: pointer;
      /* Set the color of the icon to black */
-    
   }
   /* App.css */
 .dialog-overlay {
@@ -116,6 +120,18 @@
   }
  .toggles{
     height: 10px;
+ }
+ .saving{
+    display: flex;
+    position: relative;
+    width: 980px;
+ }
+ .savemebtn{
+    display: flex;
+    position: absolute;
+    left: 920px;
+    top: 10px;
+    width: 900px;
  }
   
   

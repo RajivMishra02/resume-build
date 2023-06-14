@@ -64,11 +64,10 @@ const ResumeBuilder = () => {
     setCurrentDescription(description);
     setShowDescriptionPopup(true);
   };
-  
+
   const handleClosePopup = () => {
     setShowDescriptionPopup(false);
   };
-  
 
   const handleNameChange = (e) => {
     setEditedName(e.target.value);
@@ -98,21 +97,24 @@ const ResumeBuilder = () => {
           onDragOver={handleDragOver}
           onDrop={(e) => handleDrop(e, index)}
           style={{
+            fontSize: '20px',
             display: 'flex',
-            marginBottom: '43px',
+            marginRight: '40px',
             alignItems: 'center',
-            backgroundColor: editingIndex !== null && editingIndex !== index ? 'grey' : 'initial'
-            
+            width: '1100px',
+            height: '40%',
+            backgroundColor: editingIndex !== null && editingIndex !== index ? '#B6B6B6' : 'initial',
+            marginBottom: '32px', // Spacing between rows
           }}
         >
           <div
             className="hamburger"
             style={{
               width: '18px',
-              height: '13px',
+              height: '12px',
               cursor: 'grab',
-              marginRight: '10px',
               display: 'flex',
+              marginRight: '10px',
               flexDirection: 'column',
               justifyContent: 'space-between',
             }}
@@ -122,39 +124,40 @@ const ResumeBuilder = () => {
             <span style={{ width: '100%', height: '2px', background: '#000' }}></span>
           </div>
           <div className="section-description">
-            <button className="info-button" onClick={() => handleInfoClick(index)}>
+            <button className="info-button" onClick={() => handleInfoClick(index)} style={{ marginRight: '10px' }}>
               <UilInfoCircle size={20}></UilInfoCircle>
             </button>
             {section.showDescription && <p>{section.description}</p>}
           </div>
           {editingIndex === index ? (
-            <div>
+            <div className='saving'>
               <input type="text" value={editedName} onChange={handleNameChange} />
               <div className='tog'>
-              <button onClick={() => handleNameSave(index)} style={{ fontFamily:'Inter',fontSize:'16px',border: 'none', background: 'none', margin: '-10px', padding: '10px' }}>
-                Save
-              </button>
+                <button onClick={() => handleNameSave(index)} className='savemebtn' style={{ fontFamily: 'Inter', fontSize: '16px', border: 'none', background: 'none' }}>
+                  Save
+                </button>
               </div>
             </div>
           ) : (
             <div>
               {section.name}
               <div className='tog'>
-              <button onClick={() => handleEditClick(index, section.name)} style={{ border: 'none', background: 'none' }}>
-                <FontAwesomeIcon icon={faPencilAlt} />
-              </button>
-              <br />
+                <button onClick={() => handleEditClick(index, section.name)} style={{ border: 'none', background: 'none' }}>
+                  <FontAwesomeIcon icon={faPencilAlt} />
+                </button>
               </div>
             </div>
           )}
-          <div >
-            <Switch className='toggles'
+          <div>
+            <Switch
+              className='j'
               offColor='#E6E6E6' onColor='#D0BCFF'
               offHandleColor='#8B8B8B' onHandleColor='#381E72'
               uncheckedIcon={false} checkedIcon={false}
-              uncheckedHandleIcon={<UilTimes className="cross" style={{ color: 'white'}} />} checkedHandleIcon={<UilCheck className="check" style={{ color: 'white', fontSize: 12 }} />}
+              uncheckedHandleIcon={<UilTimes className="cross" style={{ color: 'white' }} />} checkedHandleIcon={<UilCheck className="check" style={{ color: 'white', fontSize: 12 }} />}
               checked={section.enabled} onChange={() => handleToggleSection(index)} />
           </div>
+          <hr></hr>
         </div>
       ))}
       {showDescriptionPopup && (
