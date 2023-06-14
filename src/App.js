@@ -71,7 +71,11 @@ const ResumeBuilder = () => {
           onDragStart={(e) => handleDragStart(e, section.id)}
           onDragOver={handleDragOver}
           onDrop={(e) => handleDrop(e, index)}
-          style={{ display: 'flex', alignItems: 'center' }}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            backgroundColor: editingIndex !== null && editingIndex !== index ? 'grey' : 'initial',
+          }}
         >
           <div
             className="hamburger"
@@ -82,7 +86,7 @@ const ResumeBuilder = () => {
               marginRight: '10px',
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'space-between'
+              justifyContent: 'space-between',
             }}
           >
             <span style={{ width: '100%', height: '3px', background: '#000' }}></span>
@@ -91,11 +95,7 @@ const ResumeBuilder = () => {
           </div>
           {editingIndex === index ? (
             <div>
-              <input
-                type="text"
-                value={editedName}
-                onChange={handleNameChange}
-              />
+              <input type="text" value={editedName} onChange={handleNameChange} />
               <button onClick={() => handleNameSave(index)}  style={{ border: 'none', background: 'none' }}>
                 Save
               </button>
@@ -108,10 +108,7 @@ const ResumeBuilder = () => {
               </button>
             </div>
           )}
-          <div
-            className={`toggle-switch ${section.enabled ? 'violet' : 'grey'}`}
-            onClick={() => handleToggleSection(index)}
-          >
+          <div className={`toggle-switch ${section.enabled ? 'violet' : 'grey'}`} onClick={() => handleToggleSection(index)}>
             <div className="slider"></div>
           </div>
         </div>
