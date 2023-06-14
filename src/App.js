@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
 const ResumeBuilder = () => {
   const [sections, setSections] = useState([
@@ -25,12 +27,6 @@ const ResumeBuilder = () => {
       updatedSections.splice(index, 0, removed);
       setSections(updatedSections);
     }
-  };
-
-  const handleSectionNameChange = (index, newName) => {
-    const updatedSections = [...sections];
-    updatedSections[index].name = newName;
-    setSections(updatedSections);
   };
 
   const handleToggleSection = (index) => {
@@ -73,7 +69,9 @@ const ResumeBuilder = () => {
             <span style={{ width: '100%', height: '3px', background: '#000' }}></span>
           </div>
           <span>{section.name}</span>
-          <button onClick={() => handleSectionNameChange(index, prompt('Enter new name:'))}>Edit</button>
+          <button onClick={() => handleToggleSection(index)}>
+            <FontAwesomeIcon icon={faPencilAlt} />
+          </button>
           <label>
             <input type="checkbox" checked={section.enabled} onChange={() => handleToggleSection(index)} />
             Toggle
