@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { RiToggleFill } from 'react-icons/ri';
-import './App.css'
-
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import './App.css';
 
 const ResumeBuilder = () => {
-  const [toggleState, setToggleState] = useState(true);
-
   const [sections, setSections] = useState([
     { id: 1, name: 'Education', enabled: true },
     { id: 2, name: 'Experience', enabled: true },
     { id: 3, name: 'Skills', enabled: true },
     { id: 5, name: 'Projects', enabled: true },
   ]);
+
+  const [editingIndex, setEditingIndex] = useState(null);
+  const [editedName, setEditedName] = useState('');
 
   const handleDragStart = (e, id) => {
     e.dataTransfer.setData('text/plain', id);
@@ -33,29 +33,33 @@ const ResumeBuilder = () => {
     }
   };
 
-  const handleSectionNameChange = (index, newName) => {
-    const updatedSections = [...sections];
-    updatedSections[index].name = newName;
-    setSections(updatedSections);
-  };
-
   const handleToggleSection = (index) => {
     const updatedSections = [...sections];
     updatedSections[index].enabled = !updatedSections[index].enabled;
     setSections(updatedSections);
   };
 
+  const handleEditClick = (index, initialName) => {
+    setEditingIndex(index);
+    setEditedName(initialName);
+  };
+
+  const handleNameChange = (e) => {
+    setEditedName(e.target.value);
+  };
+
+  const handleNameSave = (index) => {
+    const updatedSections = [...sections];
+    updatedSections[index].name = editedName;
+    setSections(updatedSections);
+    setEditingIndex(null);
+    setEditedName('');
+  };
+
   const handleSave = () => {
     // Perform save operation
     console.log('Saving changes...');
   };
-
-  const handleMenuClick = (index) => {
-    // Handle the menu button click event here
-    // You can perform the drag and drop logic or any other menu-related functionality
-    console.log(`Menu clicked for section at index ${index}`);
-  };
-  
 
   return (
     <div>
@@ -85,12 +89,31 @@ const ResumeBuilder = () => {
             <span style={{ width: '100%', height: '3px', background: '#000' }}></span>
             <span style={{ width: '100%', height: '3px', background: '#000' }}></span>
           </div>
-          <span>{section.name}</span>
-          <button onClick={() => handleSectionNameChange(index, prompt('Enter new name:'))}>Edit</button>
-          <div className={`toggle-switch ${section.enabled ? 'violet' : 'grey'}`} onClick={() => handleToggleSection(index)}>
-  <div className="slider"></div>
-</div>
-
+          {editingIndex === index ? (
+            <div>
+              <input
+                type="text"
+                value={editedName}
+                onChange={handleNameChange}
+              />
+              <button onClick={() => handleNameSave(index)}  style={{ border: 'none', background: 'none' }}>
+                Save
+              </button>
+            </div>
+          ) : (
+            <div>
+              {section.name}
+              <button onClick={() => handleEditClick(index, section.name)} style={{ border: 'none', background: 'none' }}>
+                <FontAwesomeIcon icon={faPencilAlt} />
+              </button>
+            </div>
+          )}
+          <div
+            className={`toggle-switch ${section.enabled ? 'violet' : 'grey'}`}
+            onClick={() => handleToggleSection(index)}
+          >
+            <div className="slider"></div>
+          </div>
         </div>
       ))}
       <button onClick={handleSave}>Save</button>
