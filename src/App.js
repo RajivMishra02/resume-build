@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import './App.css';
 
 const ResumeBuilder = () => {
   const [sections, setSections] = useState([
@@ -9,6 +10,9 @@ const ResumeBuilder = () => {
     { id: 3, name: 'Skills', enabled: true },
     { id: 5, name: 'Projects', enabled: true },
   ]);
+
+  const [editingIndex, setEditingIndex] = useState(null);
+  const [editedName, setEditedName] = useState('');
 
   const handleDragStart = (e, id) => {
     e.dataTransfer.setData('text/plain', id);
@@ -33,6 +37,23 @@ const ResumeBuilder = () => {
     const updatedSections = [...sections];
     updatedSections[index].enabled = !updatedSections[index].enabled;
     setSections(updatedSections);
+  };
+
+  const handleEditClick = (index, initialName) => {
+    setEditingIndex(index);
+    setEditedName(initialName);
+  };
+
+  const handleNameChange = (e) => {
+    setEditedName(e.target.value);
+  };
+
+  const handleNameSave = (index) => {
+    const updatedSections = [...sections];
+    updatedSections[index].name = editedName;
+    setSections(updatedSections);
+    setEditingIndex(null);
+    setEditedName('');
   };
 
   const handleSave = () => {
@@ -68,14 +89,31 @@ const ResumeBuilder = () => {
             <span style={{ width: '100%', height: '3px', background: '#000' }}></span>
             <span style={{ width: '100%', height: '3px', background: '#000' }}></span>
           </div>
-          <span>{section.name}</span>
-          <button onClick={() => handleToggleSection(index)}>
-            <FontAwesomeIcon icon={faPencilAlt} />
-          </button>
-          <label>
-            <input type="checkbox" checked={section.enabled} onChange={() => handleToggleSection(index)} />
-            Toggle
-          </label>
+          {editingIndex === index ? (
+            <div>
+              <input
+                type="text"
+                value={editedName}
+                onChange={handleNameChange}
+              />
+              <button onClick={() => handleNameSave(index)}  style={{ border: 'none', background: 'none' }}>
+                Save
+              </button>
+            </div>
+          ) : (
+            <div>
+              {section.name}
+              <button onClick={() => handleEditClick(index, section.name)} style={{ border: 'none', background: 'none' }}>
+                <FontAwesomeIcon icon={faPencilAlt} />
+              </button>
+            </div>
+          )}
+          <div
+            className={`toggle-switch ${section.enabled ? 'violet' : 'grey'}`}
+            onClick={() => handleToggleSection(index)}
+          >
+            <div className="slider"></div>
+          </div>
         </div>
       ))}
       <button onClick={handleSave}>Save</button>
