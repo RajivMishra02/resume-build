@@ -31,3 +31,7 @@
     transform: translateX(20px);
   }
   
+  .info-button {
+    background-color: #fff;
+    color: #000;
+  }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { faPencilAlt, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
 
 const ResumeBuilder = () => {
@@ -96,8 +96,8 @@ const ResumeBuilder = () => {
           {editingIndex === index ? (
             <div>
               <input type="text" value={editedName} onChange={handleNameChange} />
-              <button onClick={() => handleNameSave(index)}  style={{ border: 'none', background: 'none' }}>
-                Save
+              <button onClick={() => handleNameSave(index)} style={{ border: 'none', background: 'none' }}>
+                <FontAwesomeIcon icon={faPencilAlt} />
               </button>
             </div>
           ) : (
@@ -108,7 +108,13 @@ const ResumeBuilder = () => {
               </button>
             </div>
           )}
-          <div className={`toggle-switch ${section.enabled ? 'violet' : 'grey'}`} onClick={() => handleToggleSection(index)}>
+          <button  style={{ border: 'none', background: 'none' }}>
+            <FontAwesomeIcon icon={faCircleInfo} style={{ color: '#000' }} />
+          </button>
+          <div
+            className={`toggle-switch ${section.enabled ? 'violet' : 'grey'}`}
+            onClick={() => handleToggleSection(index)}
+          >
             <div className="slider"></div>
           </div>
         </div>
