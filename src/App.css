@@ -30,20 +30,4 @@
   .violet .slider {
     transform: translateX(20px);
   }
-
-  .section-header {
-    display: flex;
-    align-items: center;
-  }
-  
-  .drag-handle {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    margin-right: 8px;
-    cursor: pointer;
-    background-image: url('https://example.com/menu-icon.png'); /* Replace with your menu icon image URL */
-    background-size: cover;
-  }
-  
   

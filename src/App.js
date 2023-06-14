@@ -11,7 +11,7 @@ const ResumeBuilder = () => {
     { id: 1, name: 'Education', enabled: true },
     { id: 2, name: 'Experience', enabled: true },
     { id: 3, name: 'Skills', enabled: true },
-    { id: 4, name: 'Projects', enabled: true },
+    { id: 5, name: 'Projects', enabled: true },
   ]);
 
   const handleDragStart = (e, id) => {
@@ -60,23 +60,39 @@ const ResumeBuilder = () => {
   return (
     <div>
       <h1 className=''>Resume Builder</h1>
-      <ul>
-        {sections.map((section, index) => (
-          
-          <li key={section.id} draggable onDragStart={(e) => handleDragStart(e, section.id)} onDragOver={handleDragOver} onDrop={(e) => handleDrop(e, index)}>
-          <div className="section-header">
-            <div className="drag-handle" onClick={() => handleMenuClick(index)}></div>
-            <span>{section.name}</span>
-            <button onClick={() => handleSectionNameChange(index, prompt('Enter new name:'))}>Edit</button>
-            <div className={`toggle-switch ${section.enabled ? 'violet' : 'grey'}`} onClick={() => handleToggleSection(index)}>
-              <div className="slider"></div>
-            </div>
+      {sections.map((section, index) => (
+        <div
+          key={section.id}
+          draggable
+          onDragStart={(e) => handleDragStart(e, section.id)}
+          onDragOver={handleDragOver}
+          onDrop={(e) => handleDrop(e, index)}
+          style={{ display: 'flex', alignItems: 'center' }}
+        >
+          <div
+            className="hamburger"
+            style={{
+              width: '25px',
+              height: '20px',
+              cursor: 'grab',
+              marginRight: '10px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between'
+            }}
+          >
+            <span style={{ width: '100%', height: '3px', background: '#000' }}></span>
+            <span style={{ width: '100%', height: '3px', background: '#000' }}></span>
+            <span style={{ width: '100%', height: '3px', background: '#000' }}></span>
           </div>
-        </li>
-        
+          <span>{section.name}</span>
+          <button onClick={() => handleSectionNameChange(index, prompt('Enter new name:'))}>Edit</button>
+          <div className={`toggle-switch ${section.enabled ? 'violet' : 'grey'}`} onClick={() => handleToggleSection(index)}>
+  <div className="slider"></div>
+</div>
 
-        ))}
-      </ul>
+        </div>
+      ))}
       <button onClick={handleSave}>Save</button>
     </div>
   );
