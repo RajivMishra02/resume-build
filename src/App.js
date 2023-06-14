@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
+import { RiToggleFill } from 'react-icons/ri';
+import './App.css'
+
+
 
 const ResumeBuilder = () => {
+  const [toggleState, setToggleState] = useState(true);
+
   const [sections, setSections] = useState([
     { id: 1, name: 'Education', enabled: true },
     { id: 2, name: 'Experience', enabled: true },
@@ -44,19 +50,31 @@ const ResumeBuilder = () => {
     console.log('Saving changes...');
   };
 
+  const handleMenuClick = (index) => {
+    // Handle the menu button click event here
+    // You can perform the drag and drop logic or any other menu-related functionality
+    console.log(`Menu clicked for section at index ${index}`);
+  };
+  
+
   return (
     <div>
       <h1 className=''>Resume Builder</h1>
       <ul>
         {sections.map((section, index) => (
+          
           <li key={section.id} draggable onDragStart={(e) => handleDragStart(e, section.id)} onDragOver={handleDragOver} onDrop={(e) => handleDrop(e, index)}>
+          <div className="section-header">
+            <div className="drag-handle" onClick={() => handleMenuClick(index)}></div>
             <span>{section.name}</span>
             <button onClick={() => handleSectionNameChange(index, prompt('Enter new name:'))}>Edit</button>
-            <label>
-              <input type="checkbox" checked={section.enabled} onChange={() => handleToggleSection(index)} />
-              Toggle
-            </label>
-          </li>
+            <div className={`toggle-switch ${section.enabled ? 'violet' : 'grey'}`} onClick={() => handleToggleSection(index)}>
+              <div className="slider"></div>
+            </div>
+          </div>
+        </li>
+        
+
         ))}
       </ul>
       <button onClick={handleSave}>Save</button>
