@@ -9,6 +9,7 @@ import { borderRadius, color, fontSize } from '@mui/system';
 import Switch from "react-switch";
 import { UilTimes } from '@iconscout/react-unicons';
 import { UilCheck } from '@iconscout/react-unicons';
+import { UilInfoCircle } from '@iconscout/react-unicons';
 
 const ResumeBuilder = () => {
   const [sections, setSections] = useState([
@@ -122,8 +123,8 @@ const ResumeBuilder = () => {
           </div>
           <div className="section-description">
           <button className="info-button" onClick={() => handleInfoClick(index)}>
-          <FontAwesomeIcon icon={faCircleInfo} />
-</button>
+          <UilInfoCircle></UilInfoCircle>
+          </button>
 {section.showDescription && <p>{section.description}</p>}
 
     </div>
@@ -148,7 +149,7 @@ const ResumeBuilder = () => {
             offColor='#E6E6E6' onColor='#D0BCFF' 
             offHandleColor='#8B8B8B' onHandleColor='#381E72' 
             uncheckedIcon={false} checkedIcon={false} 
-            uncheckedHandleIcon={<UilTimes className="cross" />} checkedHandleIcon={<UilCheck className="check"/>} checked={section.enabled} onChange={() => handleToggleSection(index)} />
+            uncheckedHandleIcon={<UilTimes className="cross" style={{color: "white"}} />} checkedHandleIcon={<UilCheck className="check" style={{color: "white"}} />} checked={section.enabled} onChange={() => handleToggleSection(index)} />
           </div>
         </div>
       ))}
