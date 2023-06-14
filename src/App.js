@@ -9,6 +9,7 @@ import { borderRadius, color, fontSize } from '@mui/system';
 import Switch from "react-switch";
 import { UilTimes } from '@iconscout/react-unicons';
 import { UilCheck } from '@iconscout/react-unicons';
+import { UilInfoCircle } from '@iconscout/react-unicons';
 
 const ResumeBuilder = () => {
   const [sections, setSections] = useState([
@@ -92,14 +93,13 @@ const ResumeBuilder = () => {
       {sections.map((section, index) => (
         <div
           key={section.id}
-          
           draggable
           onDragStart={(e) => handleDragStart(e, section.id)}
           onDragOver={handleDragOver}
           onDrop={(e) => handleDrop(e, index)}
           style={{
             display: 'flex',
-            marginBottom: '43px' ,
+            marginBottom: '43px',
             alignItems: 'center',
             backgroundColor: editingIndex !== null && editingIndex !== index ? 'grey' : 'initial'
           }}
@@ -121,34 +121,38 @@ const ResumeBuilder = () => {
             <span style={{ width: '100%', height: '2px', background: '#000' }}></span>
           </div>
           <div className="section-description">
-          <button className="info-button" onClick={() => handleInfoClick(index)}>
-          <FontAwesomeIcon icon={faCircleInfo} />
-</button>
-{section.showDescription && <p>{section.description}</p>}
-
-    </div>
+            <button className="info-button" onClick={() => handleInfoClick(index)}>
+              <UilInfoCircle size={20}></UilInfoCircle>
+            </button>
+            {section.showDescription && <p>{section.description}</p>}
+          </div>
           {editingIndex === index ? (
-            <div className=''>
+            <div>
               <input type="text" value={editedName} onChange={handleNameChange} />
-              <button onClick={() => handleNameSave(index)} style={{ border: 'none', background: 'none' }}>
-                <FontAwesomeIcon icon={faPencilAlt} />
+              <div className='tog'>
+              <button onClick={() => handleNameSave(index)} style={{ fontFamily:'Inter',fontSize:'16px',border: 'none', background: 'none' }}>
+                Save
               </button>
+              </div>
             </div>
           ) : (
             <div>
               {section.name}
+              <div className='tog'>
               <button onClick={() => handleEditClick(index, section.name)} style={{ border: 'none', background: 'none' }}>
                 <FontAwesomeIcon icon={faPencilAlt} />
               </button>
+              <br />
+              </div>
             </div>
           )}
-          
-          <div className="toggle-switch">
+          <div >
             <Switch 
-            offColor='#E6E6E6' onColor='#D0BCFF' 
-            offHandleColor='#8B8B8B' onHandleColor='#381E72' 
-            uncheckedIcon={false} checkedIcon={false} 
-            uncheckedHandleIcon={<UilTimes className="cross" />} checkedHandleIcon={<UilCheck className="check"/>} checked={section.enabled} onChange={() => handleToggleSection(index)} />
+              offColor='#E6E6E6' onColor='#D0BCFF'
+              offHandleColor='#8B8B8B' onHandleColor='#381E72'
+              uncheckedIcon={false} checkedIcon={false}
+              uncheckedHandleIcon={<UilTimes className="cross" style={{ color: 'white'}} />} checkedHandleIcon={<UilCheck className="check" style={{ color: 'white', fontSize: 12 }} />}
+              checked={section.enabled} onChange={() => handleToggleSection(index)} />
           </div>
         </div>
       ))}
@@ -163,8 +167,8 @@ const ResumeBuilder = () => {
         </div>
       )}
       <div className='save'>
-      <button onClick={handleSave} style={{backgroundColor:'#8A4893',fontSize: '16px',width:'429px',height:'52px',color:'white',borderRadius:'10px',border:'none'}}>Save and Next</button>
-    </div>
+        <button onClick={handleSave} style={{ backgroundColor: '#8A4893', fontSize: '16px', width: '429px', height: '52px', color: 'white', borderRadius: '10px', border: 'none' }}>Save and Next</button>
+      </div>
     </div>
   );
 };
