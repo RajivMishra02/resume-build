@@ -1,6 +1,6 @@
   .hero{
     display: flex;
-    
+
   }
 
   .violet {
@@ -117,6 +117,9 @@
   
   .description-text {
     margin-top: 10px;
+  }
+  .hi{
+    margin-bottom: 30px;
   }
 
 

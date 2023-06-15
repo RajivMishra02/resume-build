@@ -161,6 +161,9 @@ const ResumeBuilder = () => {
             checked={section.enabled} onChange={() => handleToggleSection(index)} />
         </div>
       </div>
+      <div className='hi'>
+      ___________________________________________________________________________________________________________________________________________
+      </div>
       </>
     ))}
     {showDescriptionPopup && (
@@ -175,7 +178,7 @@ const ResumeBuilder = () => {
       
     )}
     <div className='save'>
-      <button onClick={handleSave} style={{ backgroundColor: '#8A4893', fontSize: '16px', width: '429px', height: '52px', color: 'white', borderRadius: '10px', border: 'none' }}>Save and Next</button>
+      <button onClick={handleSave} style={{ backgroundColor: '#8A4893', fontSize: '16px', width: '429px', height: '52px', color: 'white', borderRadius: '10px', border: 'none', marginTop: '20px' }}>Save and Next</button>
     </div>
   </div>
   </div>
