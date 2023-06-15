@@ -1,4 +1,7 @@
-
+  .hero{
+    display: flex;
+    
+  }
 
   .violet {
     background-color: violet;
@@ -32,7 +35,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    margin-left: 200px;
+    margin-left: 160px;
     justify-items: center;
     
   }
@@ -115,21 +118,9 @@
   .description-text {
     margin-top: 10px;
   }
- .toggles{
-    height: 10px;
- }
- .saving{
-    display: flex;
-    position: relative;
-    width: 980px;
- }
- .savemebtn{
-    display: flex;
-    position: absolute;
-    left: 920px;
-    top: 10px;
-    width: 900px;
- }
+
+
+
   
   
   

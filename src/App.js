@@ -87,96 +87,100 @@ const ResumeBuilder = () => {
   };
 
   return (
+    <div className='hero'>
     <div className='main'>
-      <p className="sec">Select your sections</p>
-      {sections.map((section, index) => (
-        <><div
-          key={section.id}
-          draggable
-          onDragStart={(e) => handleDragStart(e, section.id)}
-          onDragOver={handleDragOver}
-          onDrop={(e) => handleDrop(e, index)}
-          style={{
-            fontSize: '20px',
-            position: 'relative',
-            display: 'flex',
+    <p className="sec">Select your sections</p>
+    {sections.map((section, index) => (
+      <><div
+        key={section.id}
+        draggable
+        onDragStart={(e) => handleDragStart(e, section.id)}
+        onDragOver={handleDragOver}
+        onDrop={(e) => handleDrop(e, index)}
+        style={{
+          fontSize: '18px',
+          position: 'relative',
+          display: 'flex',
 
-            alignItems: 'center',
-            width: '1100px',
-            height: '60%',
-            backgroundColor: editingIndex !== null && editingIndex !== index ? '#B6B6B6' : 'initial',
-            marginBottom: '30px', // Spacing between rows
+          alignItems: 'center',
+          width: '1200px',
+          height: '50%',
+          backgroundColor: editingIndex !== null && editingIndex !== index ? '#B6B6B6' : 'initial',
+          marginBottom: '5px', // Spacing between rows
+        }}
+      >
+        <div
+          className="hamburger"
+          style={{
+            width: '18px',
+            height: '12px',
+            cursor: 'grab',
+            display: 'flex',
+            marginRight: '10px',
+            marginBottom: '28px',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
           }}
         >
-          <div
-            className="hamburger"
-            style={{
-              width: '18px',
-              height: '12px',
-              cursor: 'grab',
-              display: 'flex',
-              marginRight: '10px',
-              marginBottom: '28px',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-            }}
-          >
-            <span style={{ width: '100%', height: '2px', background: '#000' }}></span>
-            <span style={{ width: '100%', height: '2px', background: '#000' }}></span>
-            <span style={{ width: '100%', height: '2px', background: '#000' }}></span>
-          </div>
-          <div className="section-description">
-            <button className="info-button" onClick={() => handleInfoClick(index)} style={{ marginRight: '10px' }}>
-              <UilInfoCircle size={20}></UilInfoCircle>
-            </button>
-            {section.showDescription && <p>{section.description}</p>}
-          </div>
-          {editingIndex === index ? (
-            <div className='saving'>
-              <input type="text" value={editedName} onChange={handleNameChange} />
-              <div className='tog'>
-                <button onClick={() => handleNameSave(index)} className='savemebtn' style={{ fontFamily: 'Inter', fontSize: '16px', border: 'none', background: 'none' }}>
-                  Save
-                </button>
-              </div>
-            </div>
-          ) : (
-            <div>
-              {section.name}
-              <div className='tog'>
-                <button onClick={() => handleEditClick(index, section.name)} style={{ border: 'none', background: 'none' }}>
-                  <FontAwesomeIcon icon={faPencilAlt} style={{ height: '20px' }} />
-                </button>
-              </div>
-            </div>
-          )}
-          <div>
-            <Switch
-              className='j'
-              offColor='#E6E6E6' onColor='#D0BCFF'
-              offHandleColor='#8B8B8B' onHandleColor='#381E72'
-              uncheckedIcon={false} checkedIcon={false}
-              uncheckedHandleIcon={<UilTimes className="cross" style={{ color: 'white' }} />} checkedHandleIcon={<UilCheck className="check" style={{ color: 'white' }} />}
-              checked={section.enabled} onChange={() => handleToggleSection(index)} />
-          </div>
-        </div><hr style={{ border: 'none', height: '1px', backgroundColor: '#B6B6B6', marginBottom: '10px' }}></hr></>
-      ))}
-      {showDescriptionPopup && (
-        <div className="dialog-overlay">
-          <div className="dialog">
-            <button className="close-button" onClick={handleClosePopup}>
-              <FontAwesomeIcon icon={faTimes} />
-            </button>
-            <p className="description-text">{currentDescription}</p>
-          </div>
+          <span style={{ width: '100%', height: '2px', background: '#000' }}></span>
+          <span style={{ width: '100%', height: '2px', background: '#000' }}></span>
+          <span style={{ width: '100%', height: '2px', background: '#000' }}></span>
         </div>
-        
-      )}
-      <div className='save'>
-        <button onClick={handleSave} style={{ backgroundColor: '#8A4893', fontSize: '16px', width: '429px', height: '52px', color: 'white', borderRadius: '10px', border: 'none' }}>Save and Next</button>
+        <div className="section-description">
+          <button className="info-button" onClick={() => handleInfoClick(index)} style={{ marginRight: '10px' }}>
+            <UilInfoCircle size={20}></UilInfoCircle>
+          </button>
+          {section.showDescription && <p>{section.description}</p>}
+        </div>
+        {editingIndex === index ? (
+          <div className='saving'>
+            <input type="text" value={editedName} onChange={handleNameChange} />
+            <div className='tog'>
+              <button onClick={() => handleNameSave(index)} className='savemebtn' style={{ fontFamily: 'Inter', fontSize: '16px', border: 'none', background: 'none' }}>
+                Save
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div>
+            {section.name}
+            <div className='tog'>
+              <button onClick={() => handleEditClick(index, section.name)} style={{ border: 'none', background: 'none' }}>
+                <FontAwesomeIcon icon={faPencilAlt} style={{ height: '20px' }} />
+              </button>
+            </div>
+          </div>
+        )}
+        <div>
+          <Switch
+            className='j'
+            offColor='#E6E6E6' onColor='#D0BCFF'
+            offHandleColor='#8B8B8B' onHandleColor='#381E72'
+            uncheckedIcon={false} checkedIcon={false}
+            uncheckedHandleIcon={<UilTimes className="cross" style={{ color: 'white' }} />} checkedHandleIcon={<UilCheck className="check" style={{ color: 'white' }} />}
+            checked={section.enabled} onChange={() => handleToggleSection(index)} />
+        </div>
       </div>
+      </>
+    ))}
+    {showDescriptionPopup && (
+      <div className="dialog-overlay">
+        <div className="dialog">
+          <button className="close-button" onClick={handleClosePopup}>
+            <FontAwesomeIcon icon={faTimes} />
+          </button>
+          <p className="description-text">{currentDescription}</p>
+        </div>
+      </div>
+      
+    )}
+    <div className='save'>
+      <button onClick={handleSave} style={{ backgroundColor: '#8A4893', fontSize: '16px', width: '429px', height: '52px', color: 'white', borderRadius: '10px', border: 'none' }}>Save and Next</button>
     </div>
-  );
+  </div>
+  </div>
+);
 };
+    
 
 export default ResumeBuilder;
