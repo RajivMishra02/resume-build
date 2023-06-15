@@ -90,7 +90,7 @@ const ResumeBuilder = () => {
     <div className='main'>
       <p className="sec">Select your sections</p>
       {sections.map((section, index) => (
-        <div
+        <><div
           key={section.id}
           draggable
           onDragStart={(e) => handleDragStart(e, section.id)}
@@ -98,12 +98,14 @@ const ResumeBuilder = () => {
           onDrop={(e) => handleDrop(e, index)}
           style={{
             fontSize: '20px',
+            position: 'relative',
             display: 'flex',
-            marginRight: '40px',
+
             alignItems: 'center',
-            width: '100%',
+            width: '90%',
+            height: '35%',
             backgroundColor: editingIndex !== null && editingIndex !== index ? '#B6B6B6' : 'initial',
-            marginBottom: '32px', // Spacing between rows
+            marginBottom: '30px',
           }}
         >
           <div
@@ -114,6 +116,7 @@ const ResumeBuilder = () => {
               cursor: 'grab',
               display: 'flex',
               marginRight: '10px',
+              marginBottom: '28px',
               flexDirection: 'column',
               justifyContent: 'space-between',
             }}
@@ -130,9 +133,9 @@ const ResumeBuilder = () => {
           </div>
           {editingIndex === index ? (
             <div>
-              <input type="text" value={editedName} onChange={handleNameChange} />
-              <div className='tog'>
-                <button onClick={() => handleNameSave(index)} style={{ fontFamily: 'Inter', fontSize: '16px', border: 'none', background: 'none' }}>
+              <input type="text" value={editedName} onChange={handleNameChange} style={{ fontSize: '20px' }} />
+              <div className='toh'>
+                <button onClick={() => handleNameSave(index)} style={{ fontFamily: 'Inter', fontSize: '18px', border: 'none', background: 'none' }}>
                   Save
                 </button>
               </div>
@@ -142,7 +145,7 @@ const ResumeBuilder = () => {
               {section.name}
               <div className='tog'>
                 <button onClick={() => handleEditClick(index, section.name)} style={{ border: 'none', background: 'none' }}>
-                  <FontAwesomeIcon icon={faPencilAlt} />
+                  <FontAwesomeIcon icon={faPencilAlt} style={{ height: '20px' }} />
                 </button>
               </div>
             </div>
@@ -153,11 +156,10 @@ const ResumeBuilder = () => {
               offColor='#E6E6E6' onColor='#D0BCFF'
               offHandleColor='#8B8B8B' onHandleColor='#381E72'
               uncheckedIcon={false} checkedIcon={false}
-              uncheckedHandleIcon={<UilTimes className="cross" style={{ color: 'white' }} />} checkedHandleIcon={<UilCheck className="check" style={{ color: 'white', fontSize: 12 }} />}
+              uncheckedHandleIcon={<UilTimes className="cross" style={{ color: 'white' }} />} checkedHandleIcon={<UilCheck className="check" style={{ color: 'white' }} />}
               checked={section.enabled} onChange={() => handleToggleSection(index)} />
           </div>
-          <hr></hr>
-        </div>
+        </div><hr style={{ border: 'none', height: '1px', backgroundColor: '#B6B6B6', marginBottom: '10px' }}></hr></>
       ))}
       {showDescriptionPopup && (
         <div className="dialog-overlay">
