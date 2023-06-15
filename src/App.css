@@ -34,6 +34,7 @@
     flex-direction: column;
     margin-left: 200px;
     justify-items: center;
+    
   }
 
   .j{
@@ -114,6 +115,21 @@
   .description-text {
     margin-top: 10px;
   }
+ .toggles{
+    height: 10px;
+ }
+ .saving{
+    display: flex;
+    position: relative;
+    width: 980px;
+ }
+ .savemebtn{
+    display: flex;
+    position: absolute;
+    left: 920px;
+    top: 10px;
+    width: 900px;
+ }
   
   
   

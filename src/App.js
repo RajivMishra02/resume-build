@@ -102,10 +102,10 @@ const ResumeBuilder = () => {
             display: 'flex',
 
             alignItems: 'center',
-            width: '90%',
-            height: '35%',
+            width: '1100px',
+            height: '60%',
             backgroundColor: editingIndex !== null && editingIndex !== index ? '#B6B6B6' : 'initial',
-            marginBottom: '30px',
+            marginBottom: '30px', // Spacing between rows
           }}
         >
           <div
@@ -132,10 +132,10 @@ const ResumeBuilder = () => {
             {section.showDescription && <p>{section.description}</p>}
           </div>
           {editingIndex === index ? (
-            <div>
-              <input type="text" value={editedName} onChange={handleNameChange} style={{ fontSize: '20px' }} />
-              <div className='toh'>
-                <button onClick={() => handleNameSave(index)} style={{ fontFamily: 'Inter', fontSize: '18px', border: 'none', background: 'none' }}>
+            <div className='saving'>
+              <input type="text" value={editedName} onChange={handleNameChange} />
+              <div className='tog'>
+                <button onClick={() => handleNameSave(index)} className='savemebtn' style={{ fontFamily: 'Inter', fontSize: '16px', border: 'none', background: 'none' }}>
                   Save
                 </button>
               </div>
@@ -170,6 +170,7 @@ const ResumeBuilder = () => {
             <p className="description-text">{currentDescription}</p>
           </div>
         </div>
+        
       )}
       <div className='save'>
         <button onClick={handleSave} style={{ backgroundColor: '#8A4893', fontSize: '16px', width: '429px', height: '52px', color: 'white', borderRadius: '10px', border: 'none' }}>Save and Next</button>
