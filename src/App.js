@@ -102,9 +102,9 @@ const ResumeBuilder = () => {
             marginRight: '40px',
             alignItems: 'center',
             width: '1100px',
-            height: '40%',
+            height: '60%',
             backgroundColor: editingIndex !== null && editingIndex !== index ? '#B6B6B6' : 'initial',
-            marginBottom: '32px', // Spacing between rows
+            marginBottom: '30px', // Spacing between rows
           }}
         >
           <div
