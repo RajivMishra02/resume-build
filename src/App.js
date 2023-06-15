@@ -162,7 +162,7 @@ const ResumeBuilder = () => {
         </div>
       </div>
       <div className='hi'>
-      ___________________________________________________________________________________________________________________________________________
+      _______________________________________________________________________________________________________________________________________________
       </div>
       </>
     ))}
@@ -178,7 +178,7 @@ const ResumeBuilder = () => {
       
     )}
     <div className='save'>
-      <button onClick={handleSave} style={{ backgroundColor: '#8A4893', fontSize: '16px', width: '429px', height: '52px', color: 'white', borderRadius: '10px', border: 'none', marginTop: '20px' }}>Save and Next</button>
+      <button onClick={handleSave} style={{ backgroundColor: '#8A4893', fontSize: '16px', width: '429px', height: '52px', color: 'white', borderRadius: '10px', border: 'none', marginTop: '8px' }}>Save and Next</button>
     </div>
   </div>
   </div>

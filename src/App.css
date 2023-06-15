@@ -59,16 +59,17 @@
   .sec{
     margin-left: 368px;
     width: 307px;
-    height: 40px;
+    height: 20px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    font-size: 32px;
+    font-size: 28px;
     line-height: 40px;
     color: #000000;
     flex: none;
     order: 0;
     flex-grow: 0;
+    margin-top: 14px;
   }
   
 
@@ -119,7 +120,9 @@
     margin-top: 10px;
   }
   .hi{
-    margin-bottom: 30px;
+    margin-bottom: 8px;
+    margin-top: -17px;
+    color: gainsboro;
   }
 
 
